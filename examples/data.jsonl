@@ -1,0 +1,12 @@
+{"id":"1","group":"customer-01","label":"billing","text":"Please explain this invoice","metadata":{"source":"synthetic"}}
+{"id":"2","group":"customer-01","label":"support","text":"راهنمای تغییر گذرواژه را می‌خواهم","metadata":{"source":"synthetic"}}
+{"id":"3","group":"customer-02","label":"billing","text":"A payment appears twice on my bill","metadata":{"source":"synthetic"}}
+{"id":"4","group":"customer-02","label":"support","text":"How can I update my account email","metadata":{"source":"synthetic"}}
+{"id":"5","group":"customer-03","label":"billing","text":"لطفاً هزینه سفارش را بررسی کنید","metadata":{"source":"synthetic"}}
+{"id":"6","group":"customer-03","label":"support","text":"The login page will not load","metadata":{"source":"synthetic"}}
+{"id":"7","group":"customer-04","label":"billing","text":"I need a receipt for the last charge","metadata":{"source":"synthetic"}}
+{"id":"8","group":"customer-04","label":"support","text":"برای ورود به حساب کمک لازم دارم","metadata":{"source":"synthetic"}}
+{"id":"9","group":"customer-05","label":"billing","text":"Can you refund the cancelled order","metadata":{"source":"synthetic"}}
+{"id":"10","group":"customer-05","label":"support","text":"Where do I enable two factor authentication","metadata":{"source":"synthetic"}}
+{"id":"11","group":"customer-06","label":"billing","text":"مبلغ فاکتور با پرداخت من تفاوت دارد","metadata":{"source":"synthetic"}}
+{"id":"12","group":"customer-06","label":"support","text":"My password reset link has expired","metadata":{"source":"synthetic"}}
