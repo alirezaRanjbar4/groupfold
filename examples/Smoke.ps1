@@ -48,4 +48,6 @@ try {
     } finally { $zip.Dispose() }
     $report | ConvertTo-Json -Depth 12 | Set-Content (Join-Path $runDirectory 'verified-export.json') -Encoding utf8
     Write-Output ('Installed-tool smoke passed; evidence: ' + $runDirectory)
+    # Expected negative CLI checks must not become the successful script's exit code.
+    $global:LASTEXITCODE = 0
 } finally { Pop-Location }
