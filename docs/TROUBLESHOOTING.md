@@ -1,5 +1,9 @@
 # Troubleshooting
 
+## Verify stored artifacts
+
+The published 0.1.0 package has no `verify`; use source 0.2.0 until the closing release. `GFV001` means source bytes differ, `GFV002` means manifest plan metadata differs, `GFV003` means a required artifact is missing or a link, and `GFV004` means artifact content, length or hash differs. Check source, manifest and files from a trusted location; replacing a hash to silence a warning will not repair changed rows. Exit 2 means invalid input/manifest/options or a resource/file error; exit 1 is a verification mismatch. Details and fixed limits are in [verification](VERIFY.md).
+
 ## Strict mode returns 1 and creates no output
 
 This is a quality gate. Inspect `warnings` in the JSON plan. `GF001` means a label spans fewer groups than folds; `GF002` identifies actual missing labels in a training/validation partition; `GF003` means a group exceeds the ideal rows per fold. Reduce fold count, obtain more independent groups or review whether this validation design matches your task. Do not split related groups just to hide a warning. Without `--strict`, warnings are advisory and an explicit split exports the reviewed assignment with exit 0.

@@ -6,7 +6,7 @@
     <PackAsTool>true</PackAsTool>
     <ToolCommandName>groupfold</ToolCommandName>
     <PackageId>GroupFold.Tool</PackageId>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Authors>alirezaRanjbar4</Authors>
     <Description>Offline group-preserving, class-aware cross-validation fold artifacts for labeled JSONL datasets.</Description>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>

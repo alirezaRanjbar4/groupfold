@@ -16,4 +16,6 @@ The smoke script requires PowerShell 7, available on GitHub-hosted runners. It i
 
 Tests cover group/class coverage, independent complement checks, metadata/order/encoding preservation, deterministic artifacts across paths/cultures, warnings, resource/input limits and 0/1/2 exits. Add meaningful regressions for changed behavior. Algorithm changes require an explicit version/compatibility decision: persisted assignments should not change silently. Runtime code uses only the .NET BCL and performs no network or model calls.
 
+The source 0.2.0 [verifier](docs/VERIFY.md) also checks stored bytes against independently reconstructed train/validation content; tests include a changed artifact with a rewritten manifest hash, malformed/unsafe manifests, missing artifacts, source changes and no-write behavior. It is not yet present in published 0.1.0.
+
 Update docs/changelog with observable changes. Contributions use the [MIT license](LICENSE). Source grouping/stratification is an engineering aid, not a basis for invented model-quality claims.

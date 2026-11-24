@@ -8,6 +8,8 @@ Messages from the same customer or thread should not land on both sides of a val
 
 It prepares data; it does not train a model, discover related entities, resample classes or guarantee balanced/optimal folds or better accuracy. See [research and existing tools](docs/RESEARCH.md), including ML.NET's existing group support and Python's StratifiedGroupKFold.
 
+Source version 0.2.0 adds read-only verification of stored artifacts against the original source and manifest. The currently published v0.1.0 does not have `verify`; build source until the closing release is published.
+
 ## Quick start
 
 Requires the .NET 10 SDK. From a checkout:
@@ -16,6 +18,7 @@ Requires the .NET 10 SDK. From a checkout:
 dotnet test -c Release
 dotnet run --project src/Cli -- plan --input examples/data.jsonl --folds 3 --seed 42 --strict
 dotnet run --project src/Cli -- split --input examples/data.jsonl --out-dir artifacts/folds-42 --folds 3 --seed 42 --strict
+dotnet run --project src/Cli -- verify --input examples/data.jsonl --manifest artifacts/folds-42/manifest.json --artifact-dir artifacts/folds-42
 ```
 
 The synthetic example has 12 records from six customers and two labels. It produces three validation folds, each with four rows (two of each label) and two whole customer groups; each training complement has eight rows. Use a **fresh output directory** for another export. The fixture demonstrates partition behavior, not model quality.
@@ -74,8 +77,10 @@ JSON goes to stdout. Reports use `schemaVersion: 1`, assignment algorithm `group
 
 Fold count is 2–20 (default 5); seed is any signed 32-bit integer (default 0). Repeated/unknown options are rejected. `plan` is read-only; only `split` accepts/requires `--out-dir`.
 
+For source 0.2.0, `verify` also returns `1` when stored artifacts or manifest content do not match. It returns `0` on a consistent set or `2` for an invalid manifest/options or inaccessible input. No output files are created. Read the [verification contract](docs/VERIFY.md) for precise checks, bounds and privacy limitations.
+
 Inputs are limited to 64 MiB, 100,000 rows and 100 labels; a line is limited to one Mi UTF-16 code units. Combined train/validation dataset outputs are limited to 256 MiB because k-fold pairs duplicate training rows. The full snapshot/group state is kept in memory. Existing destination files or directories are refused; files are created exclusively with best-effort cleanup after failed writes. This is not a multi-file atomic transaction. See [design](docs/DESIGN.md) for the fixed heuristic, resource bounds and filesystem limits.
 
 ## Development and scope
 
-[Contributing](CONTRIBUTING.md), [changelog](CHANGELOG.md), [MIT license](LICENSE) and the [bounded roadmap](ROADMAP.md) describe validation and the completion boundary. CI tests, formats, packs, installs and exercises examples on Windows/Linux/macOS. Independent verification of previously stored artifacts is planned; there is no `verify` command in 0.1.0.
+[Contributing](CONTRIBUTING.md), [changelog](CHANGELOG.md), [MIT license](LICENSE) and the [bounded roadmap](ROADMAP.md) describe validation and the completion boundary. CI tests, formats, packs, installs and exercises examples on Windows/Linux/macOS. Verification is available in source 0.2.0 but not in the published 0.1.0 tool.
