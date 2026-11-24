@@ -249,7 +249,7 @@ public sealed class FoldTests : IDisposable
     [Fact]
     public void CliHelpVersionMissingFileAndSuccessContracts()
     {
-        Assert.Equal(0, Run(["--help"]).Code); Assert.Equal("0.1.0", Run(["--version"]).Output.Trim());
+        Assert.Equal(0, Run(["--help"]).Code); Assert.Equal("0.2.0", Run(["--version"]).Output.Trim());
         Assert.Equal(2, Run([]).Code); Assert.Equal(2, Run(["plan"]).Code);
         Assert.Equal(2, Run(["plan", "--input", Fresh("missing")]).Code);
         Assert.Equal(2, Run(["split", "--input", Input()]).Code);

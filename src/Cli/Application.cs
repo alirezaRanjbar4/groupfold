@@ -7,14 +7,27 @@ public static class Application
 {
     public static int Run(string[] args, TextWriter output, TextWriter error)
     {
-        if (args is ["--version"]) { output.WriteLine("0.1.0"); return 0; }
+        if (args is ["--version"]) { output.WriteLine("0.2.0"); return 0; }
         if (args is ["--help"] or ["-h"])
         {
-            output.WriteLine("groupfold plan --input data.jsonl [--folds 5] [--seed 0] [--strict]\ngroupfold split --input data.jsonl --out-dir fresh/path [--folds 5] [--seed 0] [--strict]\nRows require nonblank string id/group/label; optional fields are preserved. Group-preserving class-aware heuristic; no model is trained. JSON stdout. Exit 0 success, 1 warnings with --strict (no export), 2 input/argument/file error.");
+            output.WriteLine("groupfold plan --input data.jsonl [--folds 5] [--seed 0] [--strict]\ngroupfold split --input data.jsonl --out-dir fresh/path [--folds 5] [--seed 0] [--strict]\ngroupfold verify --input data.jsonl --manifest manifest.json --artifact-dir path\nRows require nonblank string id/group/label; optional fields are preserved. Group-preserving class-aware heuristic; no model is trained. JSON stdout. Exit 0 success, 1 verification mismatch or warnings with --strict, 2 input/argument/file error.");
             return 0;
         }
         try
         {
+            if (args.Length > 0 && args[0] == "verify")
+            {
+                var verifyOptions = new Dictionary<string, string>(StringComparer.Ordinal);
+                for (var i = 1; i < args.Length; i++)
+                {
+                    var key = args[i];
+                    if (key is not ("--input" or "--manifest" or "--artifact-dir") || ++i >= args.Length || string.IsNullOrWhiteSpace(args[i]) || args[i].StartsWith("--", StringComparison.Ordinal) || !verifyOptions.TryAdd(key, args[i])) throw new InputException("Verify needs one each of --input, --manifest and --artifact-dir.");
+                }
+                if (verifyOptions.Count != 3) throw new InputException("Verify needs one each of --input, --manifest and --artifact-dir.");
+                var verification = Verifier.Verify(verifyOptions["--input"], verifyOptions["--manifest"], verifyOptions["--artifact-dir"]);
+                output.WriteLine(JsonSerializer.Serialize(verification, Planner.JsonOptions));
+                return verification.Passed ? 0 : 1;
+            }
             if (args.Length == 0 || args[0] is not ("plan" or "split")) throw new InputException("Use plan or split; see --help.");
             var options = new Dictionary<string, string>(StringComparer.Ordinal);
             var strict = false;
