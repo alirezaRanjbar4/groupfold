@@ -2,7 +2,7 @@
 
 ## Verify stored artifacts
 
-The published 0.1.0 package has no `verify`; use source 0.2.0 until the closing release. `GFV001` means source bytes differ, `GFV002` means manifest plan metadata differs, `GFV003` means a required artifact is missing or a link, and `GFV004` means artifact content, length or hash differs. Check source, manifest and files from a trusted location; replacing a hash to silence a warning will not repair changed rows. Exit 2 means invalid input/manifest/options or a resource/file error; exit 1 is a verification mismatch. Details and fixed limits are in [verification](VERIFY.md).
+The 0.1.0 package has no `verify`; use version 0.2.0 or later. `GFV001` means source bytes differ, `GFV002` means manifest plan metadata differs, `GFV003` means a required artifact is missing or a link, and `GFV004` means artifact content, length or hash differs. Check source, manifest and files from a trusted location; replacing a hash to silence a warning will not repair changed rows. Exit 2 means invalid input/manifest/options or a resource/file error; exit 1 is a verification mismatch. Details and fixed limits are in [verification](VERIFY.md).
 
 ## Strict mode returns 1 and creates no output
 
@@ -22,7 +22,7 @@ Use a fresh `--out-dir`; an existing directory is refused even if empty. Avoid r
 
 Source hashes describe exact original bytes. Output uses UTF-8 without BOM and LF, so a BOM/CRLF source will have a different output hash. Every individual output retains original relative row order. Validation assignments are group-based, so files are not necessarily contiguous source chunks. Compare `validationSourceLines` and the artifact hashes in `manifest.json`.
 
-The same bytes/seed/fold count/algorithm version reproduce the same assignment. Preview and export are separate invocations with their own snapshots; compare `sourceSha256` if input can change. No `verify` command is available in 0.1.0; the read-only stored-artifact verifier is [planned](../ROADMAP.md).
+The same bytes/seed/fold count/algorithm version reproduce the same assignment. Preview and export are separate invocations with their own snapshots; compare `sourceSha256` if input can change. No `verify` command is available in 0.1.0; the read-only verifier is described in the [verification guide](VERIFY.md).
 
 ## Data still leaks or a classifier rejects it
 

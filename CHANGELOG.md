@@ -1,9 +1,9 @@
 # Changelog
 
-## 0.2.0 — Unreleased
+## 0.2.0
 
 - Add read-only `verify` for a saved manifest and artifacts against original input and a recomputed `group-sse-v1` plan. It validates strict manifest structure and expected filenames, then checks actual bytes, lengths and hashes against the source assignment, including modified files with rewritten manifest hashes.
-- Report stable `GFV001`–`GFV004` findings with 0/1/2 exits; include manifest byte hash, bounded processing, privacy limits, tests and installed examples. See [verification](docs/VERIFY.md). Publication and final closing-release acceptance remain pending.
+- Report stable `GFV001`–`GFV004` findings with 0/1/2 exits; include manifest byte hash, bounded processing, privacy limits, tests and installed examples. See [verification](docs/VERIFY.md).
 
 ## 0.1.0 — 2026-11-23
 
