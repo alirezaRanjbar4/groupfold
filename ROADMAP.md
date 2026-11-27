@@ -8,4 +8,4 @@ Scope fixed on 2026-11-23, before initial publication.
 
 After those items, retain the public repository for bugs/feedback. Additional optimizers, CSV adapters, model training, remote data, temporal splitting, semantic duplicate discovery and resampling are optional, outside this boundary. Required features will not be added indefinitely.
 
-The published 0.1.0 release has no verifier; source 0.2.0 includes it, pending the closing release. See [research](docs/RESEARCH.md) and [design](docs/DESIGN.md) for the problem, alternatives and limits.
+Version 0.1.0 has no verifier; version 0.2.0 includes it. See [research](docs/RESEARCH.md) and [design](docs/DESIGN.md) for the problem, alternatives and limits.

@@ -1,6 +1,6 @@
 # Stored artifact verification
 
-Available in source version 0.2.0; the published v0.1.0 package has no `verify`. From a checkout, first run the [quick start](../README.md) to create `artifacts/folds-42`, then:
+Available in version 0.2.0; the v0.1.0 package has no `verify`. From a checkout, first run the [quick start](../README.md) to create `artifacts/folds-42`, then:
 
 ```sh
 dotnet run --project src/Cli -- verify --input examples/data.jsonl --manifest artifacts/folds-42/manifest.json --artifact-dir artifacts/folds-42
